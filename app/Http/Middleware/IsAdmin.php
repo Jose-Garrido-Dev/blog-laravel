@@ -15,9 +15,9 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if($request->user()->is_admin != 1){
+        /*if($request->user()->is_admin != 1){  // este middleware ya no lo utilizaremos 
             return redirect('/');
         }
-        return $next($request);
+        return $next($request);*/
     }
 }

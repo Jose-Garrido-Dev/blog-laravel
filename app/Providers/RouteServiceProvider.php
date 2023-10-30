@@ -35,8 +35,8 @@ class RouteServiceProvider extends ServiceProvider
 
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
-            // para usar gates para restringir rutas reemplazamos is_admin(el middleware) por can:admin
-            Route::middleware('web', 'auth','is_admin')
+            // para usar gates para restringir rutas reemplazamos is_admin(el middleware) por can:admin, quitamos el is_admin del gates
+            Route::middleware('web', 'auth')
                 ->prefix('admin')
                 ->name('admin.')
                 ->group(base_path('routes/admin.php'));

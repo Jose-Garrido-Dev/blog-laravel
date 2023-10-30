@@ -23,11 +23,11 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //gates
-        Gate::define('admin', function ($user){
+        //gates esta gates no la utilizaremos ya que reemplazaremos por laravel permission
+     /*   Gate::define('admin', function ($user){
           //  return $user->role === 'admin';
             return $user->is_admin;
-        });
+        });*/
 
         //para que otros autores no puedan editar posts que no son de ellos se va este gate a la policy post
 
