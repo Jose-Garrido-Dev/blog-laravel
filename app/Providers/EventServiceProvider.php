@@ -25,6 +25,7 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        //aqui debemos llamar a nuestro observador  para poder utilizarlo
         \App\Models\Post::observe(\App\Observers\PostObserver::class);
     }
 

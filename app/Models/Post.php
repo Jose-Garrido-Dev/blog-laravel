@@ -21,19 +21,19 @@ class Post extends Model
         'published',
         'image_path'
     ];
-
+//Accesores y mutadores
     protected function title(): Attribute
     {
         return new Attribute(
-            set: fn ($value) => strtolower($value),
-            get: fn ($value) => ucfirst($value)
+            set: fn ($value) => strtolower($value), //mutadorescon el metodo set almacenamos un mutador para que se almacenen en nuestra base de datos, le decimos que lo almacene en minuscula,
+            get: fn ($value) => ucfirst($value)   // accesores recuperamos lo que sea de la base  de datos y lo transoformamos como nosotros queramos con ucfirst le decimos que transforme la prmera letra en mayuscula
         );
     }
-
+//agregamos propiedad que no exuste en la tabla con un accesor , definiendo propiedad protegida, dandole funcion y un nombre
     protected function image(): Attribute
     {
         return new Attribute(
-            /* get: fn () => $this->image_path ?? 'https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg' */
+            /* get: fn () => $this->image_path ?? 'https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg'  existe imagen trae la imagen sino trae la url que te pasamos*/
 
             get: function(){
                 if($this->image_path){
@@ -74,7 +74,7 @@ class Post extends Model
     public function comments(){
         return $this->morphMany(Comment::class, 'commentable');
     }
-
+    //Relacion uno a muchos polimorfica
     public function images(){
         return $this->morphMany(Image::class, 'imageable');
     }

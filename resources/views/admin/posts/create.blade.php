@@ -5,8 +5,8 @@
     </h1>
 
     <form action="{{route('admin.posts.store')}}" 
-        method="POST"
-        x-data="data()"
+        method="POST"  {{--con alpine.js  le indicamos que reciba y escriba  el titulo y lo convierta en slug--}}
+        x-data="data()"{{--llamamos a la funcion data que está mas abajo con codigo JS, con x init le decimos a alpine que se mantenga a la escucha a cualquier cambio de titulo que lo dejetecte y llame metodo xwatch--}}
         x-init="$watch('title', value => { string_to_slug(value) })">
 
         @csrf
@@ -17,10 +17,10 @@
             <x-label class="mb-2">
                 Título del artículo
             </x-label>
-
+{{--ocupamos componentes jetstream--}}
             <x-input name="title"
                 value="{{old('title')}}"
-                x-model="title"
+                x-model="title" {{--con esta variable cualquier cambio que hagamos en eltitulo se verá reflejado en el slug--}}
                 class="w-full" 
                 placeholder="Ingrese el nombre del artículo" />
         </div>
@@ -45,7 +45,7 @@
             <x-select class="w-full" name="category_id">
 
                 @foreach ($categories as $category)
-                    <option @selected(old('category_id') == $category->id)
+                    <option @selected(old('category_id') == $category->id){{--la directiva selected nos permitirá agregar condicional con old preguntamos si huboerror de validacion y para que mantengamos la categoria seleccionada--}}
                         value="{{$category->id}}">
                         {{$category->name}}
                     </option>
@@ -63,7 +63,7 @@
 
     </form>
 
-
+{{--con alpine.js  le indicamos que reciba y escriba  el titulo y lo convierta en slug , con expresiones regulares capture str lo transofmre en slug valido que excluya todos esos valores y apenas lo tenga lo remplce--}}
     @push('js')
         
         <script>

@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\ResizeImage;
 use App\Models\Category;
 use App\Models\Image;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image as ImageIntervention;
+
 
 class PostController extends Controller
 {
@@ -71,14 +72,15 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
 
+        /*return $request->all();*/
         $request->validate([
             'title' => 'required',
-            'slug' => 'required|unique:posts,slug,' . $post->id,
+            'slug' => 'required|unique:posts,slug,' . $post->id, // con esto le decimos que excluya el slug  que estamos editando  y no muestre problemas al validar 
             'category_id' => 'required|exists:categories,id',
             'excerpt' => $request->published ? 'required' : 'nullable',
-            'body' => $request->published ? 'required' : 'nullable',
+            'body' => $request->published ? 'required' : 'nullable',// tambien validamos que no publique articulos cuando le falta el cuerpo o extract
             'published' => 'required|boolean',
-            'tags' => 'nullable|array',
+            'tags' => 'nullable|array', // el tags puede ser nulo si existe puede ser un array
             'image' => 'nullable|image'
         ]);
 
@@ -119,24 +121,20 @@ class PostController extends Controller
             $tags[] = $tag->id;
         }
 
-        $post->tags()->sync($tags);
+        $post->tags()->sync($tags); // aqui sincronizamos el nuevo tag con el post creado
 
-        if($request->file('image'))
+        if($request->file('image')) //aqui subimos un archivo con facade storage , es importantye ene l modelo habilitar asignacion masiva en fillable
         {
             if($post->image_path){
                 Storage::delete($post->image_path);
             }
 
-            $file_name = $request->slug . '.' . $request->file('image')->getClientOriginalExtension();
-            $data['image_path'] = Storage::putFileAs('posts', $request->image, $file_name, 'public');
+            $file_name = $request->slug . '.' . $request->file('image')->getClientOriginalExtension();// aqui le asignamos el slug de nombre al archivo de imagen, concatenado la extension extraida de la imagen original
+            $data['image_path'] = Storage::putFileAs('posts', $request->image, $file_name, 'public'); //al subir imagenes con este metodo putfileas le pasamos carpeta donde quiero que se almacene , el segundo el nombre de la imagen, el tercer parametro 
 
             //storage/posts/imagen.jpg
-
-            $img = ImageIntervention::make('storage/' . $data['image_path']);
-            $img->resize(1200, null, function ($constraint) {
-                $constraint->aspectRatio();
-            });
-            $img->save();
+            // aqui llamamos al jobs creado para redimensionar imagen
+            ResizeImage::dispatch($data['image_path']);
 
             /* $data['image_path'] = $request->file('image')->storeAs('posts', $file_name, [
                 'visibility' => 'public',

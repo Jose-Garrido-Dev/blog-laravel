@@ -13,14 +13,14 @@ class Kernel extends ConsoleKernel
      * Define the application's command schedule.
      */
     protected function schedule(Schedule $schedule): void
-    {
+    {// dentro de este metodo agregaremos todas las tareas que queremos que se programen
         // $schedule->command('inspire')->hourly();
         $schedule->call(function () {
             $files = Storage::files('images');
             $images = Image::pluck('path')->toArray();
 
             Storage::delete(array_diff($files, $images));
-        })->daily();
+        })->daily();// con el codigo php artisan schedule:work simula un cron a la escucha y cada minuto ejecutara el codigo
     }
 
     /**

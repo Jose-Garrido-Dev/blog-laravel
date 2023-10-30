@@ -4,18 +4,18 @@
         <a class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700" href="{{route('admin.posts.create')}}">Nuevo</a>
     </div>
 
-    <ul class="space-y-8">
+    <ul class="space-y-8"> {{--Todos los elementos de la lista les da una separación de 2 rem la clase space-y-8--}}
         @foreach ($posts as $post)
         
             <li class="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 <div>
-                    <a href="{{route('admin.posts.edit', $post)}}">
+                    <a href="{{route('admin.posts.edit', $post)}}">{{--ruta de editar imagen al hacer click en la imagen--}}
                         <img class="aspect-[16/9] object-cover object-center w-full" src="{{$post->image}}" alt="">
                     </a>
                 </div>
 
                 <div>
-                    <h1 class="text-xl font-semibold">
+                    <h1 class="text-xl font-semibold">  {{--titulo de los post--}}
                         <a href="{{route('admin.posts.edit', $post)}}">
                             {{$post->title}}
                         </a>
@@ -31,7 +31,7 @@
                     </span>
 
                     <p class="text-gray-700 mt-2">
-                        {{ Str::limit($post->excerpt, 100) }}
+                        {{ Str::limit($post->excerpt, 100) }} {{--con el facade str limit cortamos cuantos caracteres queremos mostrar y al final con ... --}}
                     </p>
 
                     <div class="flex justify-end mt-4">

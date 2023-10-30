@@ -38,8 +38,9 @@ Route::post('images/upload', [ImageController::class, 'upload'])
     ->name('images.upload');
 
 Route::get('prueba', function(){
-    $files = Storage::files('images');
+    $files = Storage::files('images');  // este metodo me trae solo los archivos que se encuentran en la carpeta pero ignora subcarpetas y sus archivos si le pongo allfiles trae todo hasta los que estan en subcarpetas
     $images = Image::pluck('path')->toArray();
-
+// return Storage::downlodad('posts/articulo-de-prueba.png') y listo lo descarga ´podemos agregar un return para gacero mas visual, si no pedimos que lo retrone no hara nada
+    
     Storage::delete(array_diff($files, $images));
 });

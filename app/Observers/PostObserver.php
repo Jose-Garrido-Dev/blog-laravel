@@ -8,7 +8,7 @@ class PostObserver
 {
     public function creating(Post $post)
     {
-        if(!app()->runningInConsole()){
+        if(!app()->runningInConsole()){ //agregamos esta condicional para que no nos ejecute esto si estamos en consola para que no muestre error
             $post->user_id = auth()->id();
         }
     }

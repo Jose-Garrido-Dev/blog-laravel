@@ -4,7 +4,7 @@
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     @endpush
 
-    <form action="{{ route('admin.posts.update', $post) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('admin.posts.update', $post) }}" method="POST" enctype="multipart/form-data"> {{--multiparform data e spara indicar que--}}
 
         @csrf
         @method('PUT')
@@ -102,7 +102,7 @@
             </div>
         </div>
 
-        <div class="mb-4">
+        <div class="mb-4"> {{--toggle para publicar el producto--}}
 
             <input type="hidden" name="published" value="0">
 
@@ -135,10 +135,11 @@
         @method('DELETE')
 
     </form>
+  {{--importamos primero jqyery y luego el js select 2  || tags:true me permite agregar desde el mismo campo mas tags || tokenseparator dice que la , y el espacio automaticamente sera una nueva etiqueta --}} 
 
     @push('js')
-        <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script> 
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> 
 
         <script>
             $(document).ready(function() {
