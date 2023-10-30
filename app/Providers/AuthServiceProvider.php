@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
+
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -21,6 +23,14 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        //gates
+        Gate::define('admin', function ($user){
+          //  return $user->role === 'admin';
+            return $user->is_admin;
+        });
+
+        //para que otros autores no puedan editar posts que no son de ellos se va este gate a la policy post
+
+
     }
 }
