@@ -12,6 +12,11 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+     public function __construct()
+     {
+        $this->middleware(['can:Gestion categorias']);// asi es lo mismo que poner el middleware dentro del controlador
+     }
     public function index()
     {
         $categories = Category::latest('id')
