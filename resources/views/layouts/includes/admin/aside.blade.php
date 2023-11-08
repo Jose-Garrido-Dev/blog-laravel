@@ -5,36 +5,42 @@
             'url' => route('admin.dashboard'),
             'active' => request()->routeIs('admin.dashboard'),
             'icon' => 'fa-solid fa-gauge-high',
+            'can' => ['acceso dashboard'],
         ],
         [
             'name' => 'Categorías',
             'url' => route('admin.categories.index'),
             'active' => request()->routeIs('admin.categories.*'),
             'icon' => 'fa-solid fa-inbox',
+            'can' => ['acceso categorias'],
         ],
         [
             'name' => 'Artículos',
             'url' => route('admin.posts.index'),
             'active' => request()->routeIs('admin.posts.*'),
             'icon' => 'fa-solid fa-blog',
+            'can' => ['acceso articulos'],
         ],
         [
             'name' => 'Roles',
             'url' => route('admin.roles.index'),
             'active' => request()->routeIs('admin.roles.*'),
             'icon' => 'fa-solid fa-user-tag',
+            'can' => ['acceso roles'],
         ],
         [
             'name' => 'Permisos',
             'url' => route('admin.permissions.index'),
             'active' => request()->routeIs('admin.permissions.*'),
             'icon' => 'fa-solid fa-key',
+            'can' => ['acceso permisos'],
         ],
         [
             'name' => 'Usuarios',
             'url' => route('admin.users.index'),
             'active' => request()->routeIs('admin.users.*'),
             'icon' => 'fa-solid fa-users',
+            'can' => ['acceso usuarios'],
         ],
     ];
 @endphp
@@ -51,6 +57,7 @@
             @foreach ($links as $link)
             
                 <li>
+                    @canany($link['can'])  {{--cuando es un permiso que verificar usamos can pero como en un array pasaremos todos los permisos que queremos que tenga hacemos un array ?? ternaria [null] con eso se muestra igual en caso de estar comentado --}}
                     <a href="{{ $link['url'] }}"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group {{ $link['active'] ? 'bg-gray-400' : '' }}">
 
@@ -60,6 +67,7 @@
                             {{ $link['name'] }}
                         </span>
                     </a>
+                    @endcanany
                 </li>
 
             @endforeach

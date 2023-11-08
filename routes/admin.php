@@ -11,28 +11,28 @@ Route::get('/', function(){
 
     return view('admin.dashboard');
     
-})->middleware('can:Acceso al Dashboard')
+})->middleware('can:acceso dashboard')
   ->name('dashboard');
 
 //Rutas de Usuarios
 
 Route::resource('/categories', CategoryController::class)
-    ->middleware('can:Gestion categorias')
+   ->middleware('can:acceso categorias')
     ->except('show');
 
 Route::resource('/posts', PostController::class)
-    ->middleware('can:Gestion Articulos')
+    ->middleware('can:acceso articulos')
     ->except('show');
 
 
 Route::resource('/roles', RoleController::class)
-                ->middleware('can:Gestion Roles')
+                ->middleware('can:acceso roles')
                 ->except('show');
                 
 Route::resource('/permissions', PermissionController::class)
-            ->middleware('can:Gestion permisos')
+            ->middleware('can:acceso permisos')
             ->except('show');
 
 Route::resource('/users', UserController::class)
-            ->middleware('can:Gestion Usuarios')
+            ->middleware('can:acceso usuarios')
             ->except(['show','create','store']);

@@ -30,7 +30,11 @@ class AuthServiceProvider extends ServiceProvider
         });*/
 
         //para que otros autores no puedan editar posts que no son de ellos se va este gate a la policy post
-
+  
+  //traemos esta gate de laravel permission para super admin, aunque le saque todos los permisos podra acceder igual a todas las rutas aunque no tenga ningun permiso con before o after pero es recomendable before.
+        Gate::before(function ($user, $ability) {
+            return $user->hasRole('Admin') ? true : null;
+        });
 
     }
 }
