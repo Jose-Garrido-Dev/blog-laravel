@@ -1,4 +1,16 @@
-<x-admin-layout>
+<x-admin-layout :breadcrumb="[       // aqui le decimos con :antes que lo que le pasaremos será un array codigo php
+    [
+        'name' => 'Home',
+        'url' => route('admin.dashboard')
+    ],
+    [
+        'name' => 'Permisos',
+        'url' => route('admin.permissions.index')
+    ],
+    [
+        'name' => $permission->name,
+    ],
+]">
 
     <div class="bg-white shadow rounded-lg p-6">
 

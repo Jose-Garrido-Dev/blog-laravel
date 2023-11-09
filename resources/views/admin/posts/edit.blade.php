@@ -1,4 +1,16 @@
-<x-admin-layout>
+<x-admin-layout :breadcrumb="[       // aqui le decimos con :antes que lo que le pasaremos será un array codigo php
+    [
+        'name' => 'Home',
+        'url' => route('admin.dashboard')
+    ],
+    [
+        'name' => 'Artículos',
+        'url' => route('admin.posts.index')
+    ],
+    [
+        'name' => 'Editando Post : '.$post->title,
+    ],
+]">
 
     @push('css')
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />

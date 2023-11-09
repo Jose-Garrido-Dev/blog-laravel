@@ -1,4 +1,12 @@
-<x-admin-layout>
+<x-admin-layout :breadcrumb="[       // aqui le decimos con :antes que lo que le pasaremos será un array codigo php
+    [
+        'name' => 'Home',
+        'url' => route('admin.dashboard')
+    ],
+    [
+        'name' => 'Usuarios',
+    ],
+]">
     <div class="relative overflow-x-auto">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

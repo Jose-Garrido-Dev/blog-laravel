@@ -1,4 +1,16 @@
-<x-admin-layout>
+<x-admin-layout :breadcrumb="[       // aqui le decimos con :antes que lo que le pasaremos será un array codigo php
+    [
+        'name' => 'Home',
+        'url' => route('admin.dashboard')
+    ],
+    [
+        'name' => 'Categorías',
+        'url' => route('admin.categories.index')
+    ],
+    [
+        'name' => 'Editando Categoría : '.$category->name,
+    ],
+]">
 
     <form action="{{route('admin.categories.update', $category)}}" 
         method="POST"
