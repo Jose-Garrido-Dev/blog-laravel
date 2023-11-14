@@ -20,7 +20,7 @@
                     <hr class="mt-1 mb-2">
                     <div>
                         @foreach($post->tags as $tag)
-                            <span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-100 dark:text-blue-300">{{ $tag->name}}</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded ">{{ $tag->name}}</span>
                             <h2 class="text-white">revisar</h2>
                         @endforeach
                     </div>

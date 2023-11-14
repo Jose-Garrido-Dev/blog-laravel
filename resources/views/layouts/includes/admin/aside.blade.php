@@ -46,30 +46,28 @@
 @endphp
 
 <aside id="logo-sidebar"
-    class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+    class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0"
     :class="{
         '-translate-x-full': !open,
         'transform-none': open,
     }"
     aria-label="Sidebar">
-    <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
+    <div class="h-full px-3 pb-4 overflow-y-auto bg-white">
         <ul class="space-y-2 font-medium">
             @foreach ($links as $link)
-            
                 <li>
-                    @canany($link['can'])  {{--cuando es un permiso que verificar usamos can pero como en un array pasaremos todos los permisos que queremos que tenga hacemos un array ?? ternaria [null] con eso se muestra igual en caso de estar comentado --}}
-                    <a href="{{ $link['url'] }}"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group {{ $link['active'] ? 'bg-gray-400' : '' }}">
+                    @canany($link['can'])
+                        <a href="{{ $link['url'] }}"
+                            class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 {{ $link['active'] ? 'bg-gray-400' : '' }}">
 
-                        <i class="{{$link['icon']}} text-gray-500"></i>
+                            <i class="{{$link['icon']}} text-gray-500"></i>
 
-                        <span class="ml-3">
-                            {{ $link['name'] }}
-                        </span>
-                    </a>
+                            <span class="ml-3">
+                                {{ $link['name'] }}
+                            </span>
+                        </a>
                     @endcanany
                 </li>
-
             @endforeach
         </ul>
     </div>
