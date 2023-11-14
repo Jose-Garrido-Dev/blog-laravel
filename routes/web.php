@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 use App\Models\Image;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\WelcomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +18,7 @@ use Illuminate\Support\Facades\Storage;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', WelcomeController::class,)->name('home'); // como usamos metodo invoke en controller no necesitamos pasarle el metodo al controller
 
 Route::middleware([
     'auth:sanctum',

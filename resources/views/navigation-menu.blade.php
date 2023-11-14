@@ -66,7 +66,7 @@
                                 <div class="block px-4 py-2 text-xs text-gray-400">
                                     {{ __('Manage Account') }}
                                 </div>
-                                @can('admin')
+                                @can('acceso dashboard')
                                 <x-dropdown-link href="{{ route('admin.dashboard') }}">
                                     Administrador
                                 </x-dropdown-link>
