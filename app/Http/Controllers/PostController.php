@@ -19,4 +19,8 @@ class PostController extends Controller
             now()->addMinutes(5)
         );
     }
+
+    public function show(Post $post){
+        return view('posts.show',compact('post'));
+    }
 }

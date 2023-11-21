@@ -21,6 +21,12 @@ class Post extends Model
         'published',
         'image_path'
     ];
+
+    protected $casts =[
+        
+        //'published' => 'true',
+        'published_at' => 'datetime'
+    ];
 //Accesores y mutadores
     protected function title(): Attribute
     {
@@ -82,5 +88,12 @@ class Post extends Model
     //Relacion muchos a muchos polimorfica
     public function tags(){
         return $this->morphToMany(Tag::class, 'taggable');
+    }
+
+    //Route Model Binding
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }

@@ -20,6 +20,8 @@ use App\Http\Controllers\WelcomeController;
 
 Route::get('/', WelcomeController::class,)->name('home'); // como usamos metodo invoke en controller no necesitamos pasarle el metodo al controller
 
+Route::get('posts/{post}',[PostController::class,'show'])->name('posts.show');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -35,11 +37,11 @@ Route::get('/posts/{post}/image', [PostController::class, 'image'])
 
 Route::post('images/upload', [ImageController::class, 'upload'])
     ->name('images.upload');
-
+/*
 Route::get('prueba', function(){
     $files = Storage::files('images');  // este metodo me trae solo los archivos que se encuentran en la carpeta pero ignora subcarpetas y sus archivos si le pongo allfiles trae todo hasta los que estan en subcarpetas
     $images = Image::pluck('path')->toArray();
 // return Storage::downlodad('posts/articulo-de-prueba.png') y listo lo descarga ´podemos agregar un return para gacero mas visual, si no pedimos que lo retrone no hara nada
     
     Storage::delete(array_diff($files, $images));
-});
+});*/

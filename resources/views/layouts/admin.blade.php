@@ -58,7 +58,7 @@
         </div>
     </div>
 
-    <div x-show="open" {{--se encvsrgatra de mostrar  cuando haya una condicional--}}
+    <div x-show="open" {{--se encarga de mostrar  cuando haya una condicional--}}
         x-on:click="open = false"
         style="display: none" 
         class="bg-gray-900 bg-opacity-50 fixed inset-0 z-30 sm:hidden"></div>
