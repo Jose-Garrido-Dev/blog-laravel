@@ -55,9 +55,12 @@
                             <hr class="mt-1 mb-2">
                             <div class="mb-2">
                                 @foreach($post->tags as $tag)
-                                    <span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded ">                           
-                                        {{ $tag->name}}
-                                    </span>
+                                    <a href="{{route('home') . '?tag=' . $tag->name}}">
+                                        <span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded ">                           
+                                            {{ $tag->name}}
+                                        </span>
+                                    </a>
+
                                 @endforeach
                                 <p class="text-sm mb-2">
                                     {{$post->published_at->format('d M Y')}}
@@ -74,7 +77,7 @@
                     </article>
                     @endforeach
                 </div>
-                <div class="mt-4">
+                <div class="mt-4 mb-6">
                     {{$posts->links()}}
                 </div>
             </div>
