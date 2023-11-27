@@ -46,7 +46,7 @@
                     @foreach ($posts as $post)
                     <article class="grid grid-cols-2 gap-6">
                         <figure>
-                            <img src="{{$post->image}}" alt="{{$post->title}}">
+                            <img src="{{$post->image}}" alt="{{$post->title}}" class="aspect-[16/9] object-cover object-center w-full">
                         </figure>
                         <div>
                             <h1 class="text-xl font-semibold">

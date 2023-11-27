@@ -30,38 +30,27 @@
                     {!! $post->body !!}
                 </div>
             </div>
-            <div class="col-span-1">
-                <h2 class="text-2xl text-center font-semibold mt-4 mb-4">
+            <div class="col-span-1 ml-10">
+                 <!-- Artículos relacionados -->
+                 <h2 class="text-2xl text-center font-semibold mt-4 mb-4">
                     Artículos Relacionados
                 </h2>
-
                 <hr class="mt-1 mb-2">
 
-                <article class="grid grid-cols-2 gap-1">
-                    <figure>
-                        <img src="{{$post->image}}" alt="{{$post->title}}">
-                    </figure>
-                    <div>
-                        <h1 class=" font-semibold">
-                            {{$post->title}}
-                        </h1>
-                        <hr class="mt-1 mb-2">
-                        <div class="mb-2">
-                            @foreach($post->tags as $tag)
-                                <a href="{{route('home') . '?tag=' . $tag->name}}">
-                                    <span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded ">                           
-                                        {{ $tag->name}}
-                                    </span>
-                                </a>
-
-                            @endforeach
-                            <div>
-                                <a href="{{route('posts.show',$post)}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Leer más</a>
-                            </div>
+                @foreach ($relatedPosts as $relatedPost)
+                <a href="{{route('posts.show',$relatedPost)}}" class="block mb-6">
+                    <article class="grid grid-cols-2 gap-1">
+                        <figure>
+                            <img src="{{$relatedPost->image}}" alt="{{$relatedPost->title}}" class="w-full h-24 object-cover object-center mb-2">
+                        </figure>
+                        <div>
+                            <h1 class="font-semibold text-sm mb-2">
+                                {{$relatedPost->title}}
+                            </h1>
                         </div>
-                    </div>
-    
-                </article>
+                    </article>
+                </a>
+                @endforeach
             </div>
         </div>    
 

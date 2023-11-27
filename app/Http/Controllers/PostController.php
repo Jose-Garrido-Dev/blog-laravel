@@ -21,6 +21,14 @@ class PostController extends Controller
     }
 
     public function show(Post $post){
-        return view('posts.show',compact('post'));
+
+        $relatedPosts = Post::whereHas('tags', function ($query) use ($post) {
+            $query->whereIn('tags.id', $post->tags->pluck('id'));
+        })
+        ->where('id', '!=', $post->id)
+        ->take(5) // Puedes ajustar la cantidad de artículos relacionados que deseas mostrar
+        ->get();
+
+        return view('posts.show',compact('post','relatedPosts'));
     }
 }
