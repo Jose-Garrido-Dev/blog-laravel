@@ -22,4 +22,5 @@ class WelcomeController extends Controller
         // como solo retorna a la vista no es necesario crear metodo index
         return view('welcome',compact('posts','categories'));
     }
+
 }

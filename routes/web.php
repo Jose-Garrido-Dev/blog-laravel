@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\FooterController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\PostController;
 use App\Models\Image;
@@ -45,3 +47,6 @@ Route::get('prueba', function(){
     
     Storage::delete(array_diff($files, $images));
 });*/
+
+Route::get('contacts', [ContactController::class,'index'])->name('contacts.index');
+Route::post('contacts',[ContactController::class,'store'])->name('contacts.store');
