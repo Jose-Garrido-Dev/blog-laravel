@@ -1,5 +1,5 @@
 <x-app-layout>
-    <figure>
+    <figure class="mt-1">
         <img src="{{ asset('/img/home/banner.jpg') }}" class="w-full aspect-[3/1] object-cover object-center" alt="">
     </figure>
         <!--detalle de post-->
@@ -26,9 +26,15 @@
                     <img src="{{$post->image}}" alt="{{$post->title}}" class="w-full aspect-[16/9] object-cover object-center rounded-lg shadow-xl">
                 </figure>
         
-                <div>
+                <div class="mb-16">
                     {!! $post->body !!}
                 </div>
+                <div>
+                    @livewire('question',['model' => $post])
+                </div>
+                
+
+
             </div><!-- vista computador -->
             <div class="col-span-1 ml-10 hidden sm:block">
                  <!-- Artículos relacionados -->
@@ -76,6 +82,7 @@
             @endforeach
         </div>
         </div>    
+
 
 
 

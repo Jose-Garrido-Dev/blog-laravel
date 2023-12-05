@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactMailable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
@@ -16,7 +18,12 @@ class ContactController extends Controller
             'email' => 'required|email',
             'message' => 'required'
         ]);
+        Mail::to('r4gnarc0de@gmail.com')->send(new ContactMailable($request->all()));
 
-        return redirect()->route('contacts.index')->with('Tu mensaje ha sido enviado');
+        session()->flash('flash.banner', 'El mensaje se envió satisfactoriamente' );
+        session()->flash('flash.bannerStyle','success' );
+        
+        return redirect()->route('contacts.index');
+
     }
 }

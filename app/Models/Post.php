@@ -90,6 +90,12 @@ class Post extends Model
         return $this->morphToMany(Tag::class, 'taggable');
     }
 
+    //Relación de uno a muchos polimórfica
+    public function questions()
+    {
+        return $this->morphMany(Question::class, 'questionable');
+    }
+
     //Route Model Binding
 
     public function getRouteKeyName()

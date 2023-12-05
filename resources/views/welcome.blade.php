@@ -1,6 +1,6 @@
 <x-app-layout>
 
-    <figure>
+    <figure class="mt-1">
         <img src="{{ asset('/img/home/banner.jpg') }}" class="w-full aspect-[3/1] object-cover object-center" alt="">
     </figure>
     

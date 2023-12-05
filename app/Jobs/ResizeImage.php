@@ -8,6 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 use Intervention\Image\Facades\Image as ImageIntervention;
 
 class ResizeImage implements ShouldQueue
@@ -29,10 +30,15 @@ class ResizeImage implements ShouldQueue
      */
     public function handle(): void
     {
-        $img = ImageIntervention::make('storage/' . $this->image_path);
-        $img->resize(1200, null, function ($constraint) {
-            $constraint->aspectRatio();
-        });
-        $img->save('storage/' . $this->image_path,null,'jpg');
+        try {
+            $img = ImageIntervention::make('storage/' . $this->image_path);
+            $img->resize(1200, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            $img->save('storage/' . $this->image_path, null, 'jpg');
+        } catch (\Exception $e) {
+            // Registra la excepción en los logs
+            \Log::error("Error al procesar la imagen: " . $e->getMessage()); 
+        }
     }
 }
