@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Question as ModelsQuestion;
 use Livewire\Component;
 
 class Question extends Component
@@ -12,6 +13,13 @@ class Question extends Component
 
     public $questions;
 
+    public $cant =10;
+
+    public $question_edit = [
+        'id' => null,
+        'body' => ''
+    ];
+
     public function mount(){//este metodo funciona muy similar al metodo constructor
         $this->getQuestions();
     }
@@ -20,6 +28,7 @@ class Question extends Component
         $this->questions = $this->model
                     ->questions()
                     ->orderBy('created_at','desc')
+                    ->take($this->cant)
                     ->get();
     }
 
@@ -39,11 +48,46 @@ class Question extends Component
     }
 
     public function edit($questionId){
-        dd('se editará el componente'.$questionId);
+        $question = ModelsQuestion::find($questionId);
+
+        $this->question_edit = [
+            'id' => $question->id,
+            'body' => $question->body
+        ];
     }
     public function destroy($questionId){
-        dd('se  eliminará el componente');
+        $question = ModelsQuestion::find($questionId);
+        $question->delete();
+        $this->getQuestions();
+
+        $this->reset('question_edit');
     }
+
+    public function cancel(){
+        $this->reset('question_edit');
+    }
+
+    public function update(){
+
+        $this->validate([
+            'question_edit.body' => 'required'
+        ]);
+        $question = ModelsQuestion::find($this->question_edit['id']);
+        $question->update([
+            'body' => $this->question_edit['body']
+        ]); 
+
+        $this->getQuestions();
+
+        $this->reset('question_edit');
+    }
+
+    public function show_more_question(){
+        $this->cant+=10;
+        $this->getQuestions();
+
+    }
+
     public function render()
     {
         return view('livewire.question');
