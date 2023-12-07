@@ -77,7 +77,7 @@
 
                     </div>
                     {{--dropdown--}}
-                    @auth
+                    @role('Admin')
                     <div class="ml-8">
                         <x-dropdown>
                             <x-slot name="trigger">
@@ -95,7 +95,7 @@
                             </x-slot>
                         </x-dropdown>
                     </div>
-                    @endauth
+                    @endrole
                 </div>
 
                  @livewire('answer',compact('question'), key('answer-'.$question->id))

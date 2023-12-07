@@ -98,15 +98,16 @@
 
                 @else
 
-                    <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
+<div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
+    <div class="flex items-center space-x-4">
+        <a href="{{ route('login') }}" class="text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Iniciar Sesión</a>
 
-                        <a href="{{ route('login') }}" class="text-gray-600 hover:text-gray-900  focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
+        @if (Route::has('register'))
+            <a href="{{ route('register') }}" class="text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Registrarse</a>
+        @endif
+    </div>
+</div>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-gray-600 hover:text-gray-900  focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
-                        @endif
-                        
-                    </div>
 
                 @endauth
             </div>
@@ -151,11 +152,11 @@
             @guest
             
                 <x-responsive-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')">
-                    {{ __('Login') }}
+                    {{ __('Iniciar Sesión') }}
                 </x-responsive-nav-link>
 
                 <x-responsive-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
-                    {{ __('Register') }}
+                    {{ __('Registrate') }}
                 </x-responsive-nav-link>
 
             @endguest
@@ -184,7 +185,7 @@
 
                         <x-responsive-nav-link href="{{ route('logout') }}"
                                     @click.prevent="$root.submit();">
-                            {{ __('Log Out') }}
+                            {{ __('Cerrar Sesión') }}
                         </x-responsive-nav-link>
                     </form>
 

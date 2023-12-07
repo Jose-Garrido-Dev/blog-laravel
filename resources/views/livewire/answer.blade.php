@@ -35,9 +35,8 @@
     @endif
 @if($question->answers->count()> 0)
     <div class="mt-2">
-        <button class="font-semibold text-blue-500"
-        wire:click="show_answer">
-            Mostrar las respuestas
+        <button class="font-semibold text-blue-500" wire:click="show_answer">
+            {{ $open ? 'Ocultar respuestas' : 'Mostrar respuestas' }}
         </button>
     </div>
 @endif
@@ -75,7 +74,7 @@
                             @endauth --}}
 
                     </div>
-                    @auth
+                    @role('Admin')
                     <div class="ml-8">
                         <x-dropdown>
                             <x-slot name="trigger">
@@ -93,7 +92,7 @@
                             </x-slot>
                         </x-dropdown>
                     </div>
-                    @endauth
+                    @endrole
 
                 </div>
 

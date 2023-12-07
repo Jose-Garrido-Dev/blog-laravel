@@ -6,14 +6,18 @@ use App\Models\Answer as ModelsAnswer;
 
 use Livewire\Component;
 
+
 class Answer extends Component
 {
+
 
     public $question;
 
     public $answers;
 
     public $open=false;
+
+    public $showAnswers = false;
 
     public $answer_created = [
         'open' => false,
@@ -92,11 +96,11 @@ class Answer extends Component
         $this->reset('answer_edit');
     }
 
-    public function show_answer(){
-        $this->open = true;
+    public function show_answer()
+    {
+        $this->open = !$this->open; // Cambia el estado al contrario del estado actual
         $this->reset('answer_created');
         $this->getAnswers();
-
     }
 
 

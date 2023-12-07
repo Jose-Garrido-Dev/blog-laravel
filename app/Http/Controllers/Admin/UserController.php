@@ -78,6 +78,33 @@ class UserController extends Controller
         return redirect()->route('admin.users.edit',$user);
     }
 
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+        ]);
+
+        // Asigna el rol de Blogger al usuario recién creado
+        $bloggerRole = Role::where('name', 'blogger')->first();
+        $user->assignRole($bloggerRole);
+
+        session()->flash('swal', [
+            'icon' => 'success',
+            'title' => '¡Bien hecho!',
+            'text' => 'El usuario se creó correctamente y se le asignó el rol de Blogger.',
+        ]);
+
+        return redirect()->route('admin.users.edit', $user);
+    }
+
     /**
      * Remove the specified resource from storage.
      */
