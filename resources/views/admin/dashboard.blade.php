@@ -27,7 +27,7 @@
         </div>
         <div class="bg-white rounded shadow-lg p-6 flex items-center">
             <h2 class="text-xl font-semibold">
-                Antr4x Cibersecurity
+                Byte Wise Cibersecurity
             </h2>
         </div>
     </div>

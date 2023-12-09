@@ -22,9 +22,14 @@
     </div>
     
     @endauth
-    <p class="text-lg font-semibold mt-6 mb-4 text-gray-800">
-        Comentarios:
-    </p>
+    @if ($model->questions->count() > 0)
+        <p class="text-lg font-semibold mt-6 mb-4 text-gray-800">
+
+            Comentarios:
+        </p>  
+    @endif    
+
+
     <hr class="h-px my-8 bg-gray-200 border-0 ">
     <ul class="space-y-6">
         @foreach ($questions as $question)

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Acibersecurity - Correo de Prueba</title>
+    <title>Byte Wise</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -40,7 +40,7 @@
 </head>
 <body>
     <div class="email-container">
-        <h1>Antr4x Cibersecurity</h1>
+        <h1>Byte Wise Cibersecurity</h1>
 
         <p><strong>Nombre:</strong> {{ $data['name'] }}</p>
         <p><strong>Email:</strong> {{ $data['email'] }}</p>

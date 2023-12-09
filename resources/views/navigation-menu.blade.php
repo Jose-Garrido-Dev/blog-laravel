@@ -27,7 +27,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-mark class="block h-9 w-auto" />
+                        <x-application-mark class="block h-12 w-auto" />
                     </a>
                 </div>
 
@@ -70,7 +70,7 @@
                             <x-slot name="content">
                                 <!-- Account Management -->
                                 <div class="block px-4 py-2 text-xs text-gray-400">
-                                    {{ __('Manage Account') }}
+                                    {{ Auth::user()->name }}
                                 </div>
                                 @can('acceso dashboard')
                                 <x-dropdown-link href="{{ route('admin.dashboard') }}">
@@ -78,7 +78,7 @@
                                 </x-dropdown-link>
                                 @endcan
                                 <x-dropdown-link href="{{ route('profile.show') }}">
-                                    {{ __('Profile') }}
+                                    {{ __('Tu perfil') }}
                                 </x-dropdown-link>
 
                                 <div class="border-t border-gray-200 "></div>
@@ -89,7 +89,7 @@
 
                                     <x-dropdown-link href="{{ route('logout') }}"
                                             @click.prevent="$root.submit();">
-                                        {{ __('Log Out') }}
+                                        {{ __('Cerrar Sesión') }}
                                     </x-dropdown-link>
                                 </form>
                             </x-slot>
@@ -98,15 +98,19 @@
 
                 @else
 
-<div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
-    <div class="flex items-center space-x-4">
-        <a href="{{ route('login') }}" class="text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Iniciar Sesión</a>
-
-        @if (Route::has('register'))
-            <a href="{{ route('register') }}" class="text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Registrarse</a>
-        @endif
-    </div>
-</div>
+                <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
+                    <div class="flex items-center space-x-4">
+                        <a href="{{ route('login') }}" class="text-gray-600 hover:text-gray-900  ">
+                            Login <i class="fas fa-user"></i> <!-- Reemplaza "fa-user" con la clase de icono que desees -->
+                        </a>
+                
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}" class="text-gray-600 hover:text-gray-900 ">
+                                <i class="fas fa-user-plus"></i> <!-- Reemplaza "fa-user-plus" con la clase de icono que desees -->
+                            </a>
+                        @endif
+                    </div>
+                </div>
 
 
                 @endauth
@@ -176,7 +180,7 @@
                     </x-responsive-nav-link>
                     @endcan
                     <x-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
-                        {{ __('Profile') }}
+                        {{ __('Tu Perfil') }}
                     </x-responsive-nav-link>
 
                     <!-- Authentication -->

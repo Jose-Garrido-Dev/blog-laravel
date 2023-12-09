@@ -5,37 +5,30 @@
     </figure>
     
 
-    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div class="bg-white p-8 rounded-lg shadow-lg">
-            <form action="{{route('contacts.store')}}" method="POST">
-                @csrf
-                <x-validation-errors class="mb-4"/>
-                <div class="mb-4">
-                    <x-label>
-                        Nombre
-                    </x-label>
-                    <x-input type="text" name="name" class="w-full" value="{{old('name')}}" placeholder="Ingrese el nombre de contacto"  />
-                </div>
-                <div class="mb-4">
-                    <x-label>
-                        Correo
-                    </x-label>
-                    <x-input type="email" name="email" class="w-full" value="{{old('email')}}" placeholder="Ingrese el Correo eléctronico"  />
-                </div>
-
-                <div class="mb-4">
-                    <x-label>
-                        Mensaje
-                    </x-label>
-                    <textarea name="message" id="" cols="30" rows="4" value="{{old('message')}}" class="w-full border-gray-300  focus:border-indigo-500  focus:ring-indigo-500 rounded-md shadow-sm" placeholder="Ingrese el mensaje"></textarea>
-                </div>
-
-                <div class="flex justify-end">
-                    <x-button>
-                        Enviar
-                    </x-button>
-                </div>
-            </form>
+    <div class="grid max-w-screen-xl grid-cols-1 gap-8 px-8 py-16 mx-auto rounded-lg md:grid-cols-2 md:px-12 lg:px-16 xl:px-32 text-gray-800 bg-gray-100">
+        <div class="flex flex-col justify-between">
+            <div class="space-y-2">
+                <h2 class="text-4xl font-bold leadi lg:text-5xl">Enviame un mensaje!</h2>
+                <div class="text-gray-400"><p class="text-center">Si deseas poder compartir artículos en el blog relacionados a la ciberseguridad o programación.</p> </div>
+            </div>
+            <img src="{{asset('/img/home/contacto.png')}}" alt="" class="p-6 md:h-64">
         </div>
-    </section>    
+        <form action="{{route('contacts.store')}}" method="POST" class="space-y-6">
+            @csrf
+            <x-validation-errors class="mb-4"/>
+            <div>
+                <label for="name" class="text-sm">Nombre</label>
+                <input type="text" name="name" value="{{old('name')}}" placeholder="Ingrese el nombre de contacto" class="w-full p-3 rounded bg-gray-100">
+            </div>
+            <div>
+                <label for="email" class="text-sm">Email</label>
+                <input type="email" name="email" value="{{old('email')}}" placeholder="Ingrese el Correo eléctronico" class="w-full p-3 rounded bg-gray-100">
+            </div>
+            <div>
+                <label for="message" class="text-sm">Mensaje</label>
+                <textarea name="message" id="" cols="30" rows="4" value="{{old('message')}}" class="w-full  bg-gray-100  focus:border-indigo-500  focus:ring-indigo-500 rounded-md shadow-sm" placeholder="Ingrese el mensaje"></textarea>
+            </div>
+            <button type="submit" class="w-full p-3 text-sm font-bold tracki uppercase rounded bg-blue-400 hover:bg-blue-600 text-gray-900">Enviar Mensaje</button>
+        </form>
+    </div>
 </x-app-layout>    

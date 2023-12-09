@@ -38,7 +38,33 @@
             </div><!-- vista computador -->
             <div class="col-span-1 ml-10 hidden sm:block">
                  <!-- Artículos relacionados -->
-                 <h2 class="text-2xl text-center font-semibold mt-4 mb-4">
+                 @if(count($relatedPosts) > 0)
+                    <h2 class="text-2xl text-center font-semibold mt-4 mb-4">
+                        Artículos Relacionados
+                    </h2>
+                    <hr class="mt-1 mb-2">
+
+                    @foreach ($relatedPosts as $relatedPost)
+                    <a href="{{route('posts.show',$relatedPost)}}" class="block mb-6">
+                        <article class="grid grid-cols-2 gap-1">
+                            <figure class="overflow-hidden rounded-lg">
+                                <img src="{{$relatedPost->image}}" alt="{{$relatedPost->title}}" class="w-full h-24 object-cover object-center mb-2 rounded-lg transition duration-300 ease-in-out hover:scale-110 hover:overflow-hidden">
+                            </figure>
+                            <div>
+                                <h1 class="font-semibold text-sm mb-2">
+                                    {{$relatedPost->title}}
+                                </h1>
+                            </div>
+                        </article>
+                    </a>
+                    @endforeach
+                @endif
+            </div>
+        </div><!-- vista mobile  -->
+        <div class="col-span-1 sm:grid-cols-2 block sm:hidden">
+             <!-- Artículos relacionados -->
+             @if(count($relatedPosts) > 0)
+                <h2 class="text-2xl text-center font-semibold mt-4 mb-4">
                     Artículos Relacionados
                 </h2>
                 <hr class="mt-1 mb-2">
@@ -47,7 +73,7 @@
                 <a href="{{route('posts.show',$relatedPost)}}" class="block mb-6">
                     <article class="grid grid-cols-2 gap-1">
                         <figure class="overflow-hidden rounded-lg">
-                            <img src="{{$relatedPost->image}}" alt="{{$relatedPost->title}}" class="w-full h-24 object-cover object-center mb-2 rounded-lg transition duration-300 ease-in-out hover:scale-110 hover:overflow-hidden">
+                            <img src="{{$relatedPost->image}}" alt="{{$relatedPost->title}}" class="w-full h-24 object-cover object-center mb-2 rounded-lg shadow-xl transition duration-300 ease-in-out hover:scale-110">
                         </figure>
                         <div>
                             <h1 class="font-semibold text-sm mb-2">
@@ -57,29 +83,7 @@
                     </article>
                 </a>
                 @endforeach
-            </div>
-        </div><!-- vista mobile  -->
-        <div class="col-span-1 sm:grid-cols-2 block sm:hidden">
-             <!-- Artículos relacionados -->
-             <h2 class="text-2xl text-center font-semibold mt-4 mb-4">
-                Artículos Relacionados
-            </h2>
-            <hr class="mt-1 mb-2">
-
-            @foreach ($relatedPosts as $relatedPost)
-            <a href="{{route('posts.show',$relatedPost)}}" class="block mb-6">
-                <article class="grid grid-cols-2 gap-1">
-                    <figure class="overflow-hidden rounded-lg">
-                        <img src="{{$relatedPost->image}}" alt="{{$relatedPost->title}}" class="w-full h-24 object-cover object-center mb-2 rounded-lg shadow-xl transition duration-300 ease-in-out hover:scale-110">
-                    </figure>
-                    <div>
-                        <h1 class="font-semibold text-sm mb-2">
-                            {{$relatedPost->title}}
-                        </h1>
-                    </div>
-                </article>
-            </a>
-            @endforeach
+            @endif
         </div>
         </div>    
 

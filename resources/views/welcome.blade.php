@@ -6,8 +6,9 @@
     
 
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 class="text-3xl text-center font-semibold mt-4 mb-4 hidden sm:block">
+        <h1 class="text-4xl font-black text-center font-sans mt-4 mb-4 hidden sm:block " style="background-image: url({{env('APP_URL')}}./img/home/hacker.jpg); background-size:cover; background-clip:text; -webkit-background-clip:text; color:transparent;">
             Lista de Artículos
+            <hr>
         </h1>
 
         <div class="grid grid-cols-4">
@@ -36,7 +37,7 @@
                             </ul> 
                                     <!--vista mobile filtro-->
                             <div class="block sm:hidden m-4">
-                                <select name="category[]" class="border-gray-300  focus:border-indigo-500  focus:ring-indigo-500 rounded-md shadow-sm">
+                                <select name="categories[]" class="border-gray-300  focus:border-indigo-500  focus:ring-indigo-500 rounded-md shadow-sm">
                                     @foreach ($categories as $category)
                                         <option value="{{$category->id}}">{{$category->name}}</option>   
                                     @endforeach 
@@ -50,7 +51,7 @@
     
                     </form>
                 </div>
-                <h1 class="text-3xl text-center font-semibold mt-4 mb-4 block sm:hidden m-4">
+                <h1 class="text-4xl text-center font-black mt-4 mb-4 block sm:hidden m-4" style="background-image: url({{env('APP_URL')}}./img/home/hacker.jpg); background-size:cover; background-clip:text; -webkit-background-clip:text; color:transparent;">
                     Lista de Artículos
                 </h1>
             </div>
@@ -94,7 +95,7 @@
                     @endforeach
                 </div>
                 <div class="mt-4 mb-6">
-                    {{$posts->links()}}
+                    {{$posts->appends(['category' => $category])->links()}}
                 </div>
             </div>
         </div>
@@ -104,8 +105,10 @@
 
     <footer class="bg-white rounded-lg shadow  m-4">
         <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
-            <span class="block text-sm text-gray-500 sm:text-center ">© 2023 <a href="#" class="hover:underline">Antr4x™</a>. Todos los derechos reservados.</span>
+            <span class="block text-sm text-gray-500 sm:text-center ">© 2023 <a href="#" class="hover:underline">Byte Wise™</a>. Todos los derechos reservados.</span>
         </div>
     </footer>
 
 </x-app-layout>
+
+
