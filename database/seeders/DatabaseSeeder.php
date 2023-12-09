@@ -13,15 +13,19 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         \App\Models\User::factory()->create([
-            'name' => 'José Garrido Silva',
-            'email' => 'r4gnarc0de@gmail.com',
-            'password' => bcrypt('gs992017')
+            'name' => 'user X',
+            'email' => 'admin@admin.com',
+            'password' => bcrypt('12345678')
         ]);
 
-        \App\Models\User::factory(20)->create();
-        \App\Models\Category::factory(5)->create();
-        \App\Models\Post::factory(100)->create();
+        \App\Models\User::factory(5)->create();
+        \App\Models\Category::factory(4)->create();
+        \App\Models\Post::factory(15)->create();
 
         $this->call(TagSeeder::class);
+        $this->call(RolesSeeder::class);
+        $this->call(PermissionsSeeder::class);
+        $this->call(Role_Has_PermissionsSeeder::class);
+        
     }
 }

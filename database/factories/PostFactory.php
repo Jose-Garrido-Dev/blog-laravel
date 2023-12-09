@@ -26,8 +26,8 @@ class PostFactory extends Factory
             'body' => $this->faker->text(2000),
             'image_path' => $this->faker->imageUrl(1280, 720),
             'published' => $published,
-            'category_id' => rand(1, 5),
-            'user_id' => rand(1, 20),
+            'category_id' => rand(1, 4),
+            'user_id' => rand(1, 5),
             'published_at' => $published_at,
         ];
     }
