@@ -1,3 +1,6 @@
+<head>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+</head>
 <x-app-layout>
 
     <figure class="mt-1">
@@ -51,6 +54,22 @@
     
                     </form>
                 </div>
+
+                
+
+                <div class="max-w-sm p-6 border border-gray-200 text-gray-700 rounded-lg shadow mr-4 hidden sm:block">
+                    <a href="{{route('contacts.index')}}">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Contáctame</h5>
+                    </a>
+                    <p class="mb-3 font-normal text-gray-700 ">Si deseas compartir artículos en el blog, comunicacte conmigo para habilitar tu acceso.</p>
+                    <button type="button" onclick="window.location.href='{{ route('contacts.index') }}'" class="button">
+                        <div class="button-top">Enviar Mensaje</div>
+                        <div class="button-bottom"></div>
+                        <div class="button-base"></div>
+                      </button>
+                      
+                </div>
+
                 <h1 class="text-4xl text-center font-black mt-4 mb-4 block sm:hidden m-4" style="background-image: url({{env('APP_URL')}}./img/home/hacker.jpg); background-size:cover; background-clip:text; -webkit-background-clip:text; color:transparent;">
                     Lista de Artículos
                 </h1>
@@ -99,7 +118,17 @@
                 </div>
             </div>
         </div>
-
+        <div class="max-w-sm p-6  border-gray-200 text-gray-700 rounded-lg shadow mr-4 block sm:hidden">
+            <a href="{{route('contacts.index')}}">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">Contáctame</h5>
+            </a>
+            <p class="mb-3 font-normal text-gray-700">Si deseas compartir artículos en el blog, comunicacte conmigo para habilitar tu acceso.</p>
+            <button type="button" onclick="window.location.href='{{ route('contacts.index') }}'" class="button">
+                <div class="button-top">Enviar Mensaje</div>
+                <div class="button-bottom"></div>
+                <div class="button-base"></div>
+              </button>
+        </div>
 
     </section>
 

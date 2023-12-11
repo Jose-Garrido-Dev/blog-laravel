@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
     {
         \App\Models\User::factory()->create([
             'name' => 'user X',
-            'email' => 'admin@admin.com',
+            'email' => 'admin@bytewise.com',
             'password' => bcrypt('12345678')
         ]);
 
@@ -23,9 +23,9 @@ class DatabaseSeeder extends Seeder
         \App\Models\Post::factory(15)->create();
 
         $this->call(TagSeeder::class);
-        $this->call(RolesSeeder::class);
-        $this->call(PermissionsSeeder::class);
-        $this->call(Role_Has_PermissionsSeeder::class);
+        $this->call(RolesTableSeeder::class);
+        $this->call(PermissionsTableSeeder::class);
+        $this->call(Role_Has_PermissionsTableSeeder::class);
         
     }
 }

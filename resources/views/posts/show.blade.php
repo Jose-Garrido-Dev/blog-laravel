@@ -14,6 +14,7 @@
         
                 <h1 class="text-4xl font-semibold">
                     {{$post->title}}
+                    
                 </h1>
         
                 <hr class="mt-1 mb-2 ">
